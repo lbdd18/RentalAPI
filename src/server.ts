@@ -1,14 +1,15 @@
 import express from 'express';
+import swaggerUI from 'swagger-ui-express';
 
-import { categoriesRoutes } from './routes/categories.routes';
-import { specificationsRoutes } from './routes/speficications.routes';
+import { router } from './routes';
+import swaggerFile from './swagger.json';
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/categories', categoriesRoutes);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
-app.use('/specifications', specificationsRoutes);
+app.use(router);
 
 app.listen(3333, () => console.log('Server running! 🚀'));
