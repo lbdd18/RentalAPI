@@ -5,17 +5,8 @@ import { ISpecificationsRepository } from '../ISpecificationsRepository';
 class FakeSpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[];
 
-  private static INSTANCE: FakeSpecificationsRepository;
-
   constructor() {
     this.specifications = [];
-  }
-
-  public static getInstance(): FakeSpecificationsRepository {
-    if (!FakeSpecificationsRepository.INSTANCE) {
-      FakeSpecificationsRepository.INSTANCE = new FakeSpecificationsRepository();
-    }
-    return FakeSpecificationsRepository.INSTANCE;
   }
 
   async findAll(): Promise<Specification[]> {

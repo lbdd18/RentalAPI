@@ -5,17 +5,8 @@ import { ICategoriesRepository } from '../ICategoriesRepository';
 class FakeCategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
-  private static INSTANCE: FakeCategoriesRepository;
-
   constructor() {
     this.categories = [];
-  }
-
-  public static getInstance(): FakeCategoriesRepository {
-    if (!FakeCategoriesRepository.INSTANCE) {
-      FakeCategoriesRepository.INSTANCE = new FakeCategoriesRepository();
-    }
-    return FakeCategoriesRepository.INSTANCE;
   }
 
   async findAll(): Promise<Category[]> {
