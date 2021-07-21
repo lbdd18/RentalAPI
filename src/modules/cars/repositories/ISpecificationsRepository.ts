@@ -1,10 +1,10 @@
 import { ICreateSpeficationDTO } from '../dtos/ICreateSpeficationDTO';
-import { Specification } from '../model/Specification';
+import { Specification } from '../entities/Specification';
 
 interface ISpecificationsRepository {
-  findAll(): Specification[];
-  findByName(name: string): Specification;
-  create(data: ICreateSpeficationDTO): Specification;
+  findAll(): Promise<Specification[]>;
+  findByName(name: string): Promise<Specification>;
+  create(data: ICreateSpeficationDTO): Promise<Specification>;
 }
 
 export { ISpecificationsRepository };
