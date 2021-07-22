@@ -13,14 +13,18 @@ class FakeUsersRepository implements IUsersRepository {
     return this.users;
   }
 
+  async findById(id: string): Promise<User> {
+    return this.users.find(u => u.id === id);
+  }
+
   async findByEmail(email: string): Promise<User> {
     return this.users.find(u => u.email === email);
   }
 
-  async create({ name, username, email, driver_license, password, isAdmin }: ICreateUserDTO): Promise<User> {
+  async create({ name, email, driver_license, password, isAdmin }: ICreateUserDTO): Promise<User> {
     const user = new User();
 
-    Object.assign(user, { name, username, email, driver_license, password, isAdmin, created_at: new Date() });
+    Object.assign(user, { name, email, driver_license, password, isAdmin, created_at: new Date() });
 
     this.users.push(user);
 
