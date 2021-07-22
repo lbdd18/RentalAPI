@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
+import { IUpdateUserDTO } from "../../dtos/IUpdateUserDTO";
 import { User } from "../../entities/User";
 import { IUsersRepository } from "../IUsersRepository";
 
@@ -28,6 +29,18 @@ class FakeUsersRepository implements IUsersRepository {
 
     this.users.push(user);
 
+    return user;
+  }
+
+  async update({ id, name, email, driver_license, password, isAdmin, avatar }: IUpdateUserDTO): Promise<User> {
+    const user = this.users.find(u => u.id === id);
+    Object.assign(user, { name, email, driver_license, password, isAdmin, avatar });
+    return user;
+  }
+
+  async updateAvatar(id: string, avatar: string): Promise<User> {
+    const user = this.users.find(u => u.id === id);
+    user.avatar = avatar;
     return user;
   }
 
