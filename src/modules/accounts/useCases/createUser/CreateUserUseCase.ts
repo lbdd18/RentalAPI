@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe"
 import { hash } from "bcryptjs"
 
-import { User } from "../../entities/User";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { AppError } from "../../../../errors/AppError";
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {
   name: string;
