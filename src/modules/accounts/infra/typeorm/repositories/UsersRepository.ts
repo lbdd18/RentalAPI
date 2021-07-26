@@ -23,17 +23,17 @@ class UsersRepository implements IUsersRepository {
     return await this.repository.findOne({ email })
   }
 
-  async create({ name, email, driver_license, password, isAdmin }: ICreateUserDTO): Promise<User> {
+  async create({ name, email, driver_license, password, is_admin }: ICreateUserDTO): Promise<User> {
     const user = this.repository.create({
-      name, email, driver_license, password, isAdmin
+      name, email, driver_license, password, is_admin
     });
     await this.repository.save(user);
     return user;
   }
 
-  async update({ id, name, email, driver_license, password, isAdmin, avatar }: IUpdateUserDTO): Promise<User> {
+  async update({ id, name, email, driver_license, password, is_admin, avatar }: IUpdateUserDTO): Promise<User> {
     const user = await this.findById(id);
-    Object.assign(user, { name, email, driver_license, password, isAdmin, avatar });
+    Object.assign(user, { name, email, driver_license, password, is_admin, avatar });
     await this.repository.save(user);
     return user;
   }

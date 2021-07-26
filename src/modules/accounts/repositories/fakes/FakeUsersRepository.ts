@@ -22,19 +22,19 @@ class FakeUsersRepository implements IUsersRepository {
     return this.users.find(u => u.email === email);
   }
 
-  async create({ name, email, driver_license, password, isAdmin }: ICreateUserDTO): Promise<User> {
+  async create({ name, email, driver_license, password, is_admin }: ICreateUserDTO): Promise<User> {
     const user = new User();
 
-    Object.assign(user, { name, email, driver_license, password, isAdmin, created_at: new Date() });
+    Object.assign(user, { name, email, driver_license, password, is_admin, created_at: new Date() });
 
     this.users.push(user);
 
     return user;
   }
 
-  async update({ id, name, email, driver_license, password, isAdmin, avatar }: IUpdateUserDTO): Promise<User> {
+  async update({ id, name, email, driver_license, password, is_admin, avatar }: IUpdateUserDTO): Promise<User> {
     const user = this.users.find(u => u.id === id);
-    Object.assign(user, { name, email, driver_license, password, isAdmin, avatar });
+    Object.assign(user, { name, email, driver_license, password, is_admin, avatar });
     return user;
   }
 

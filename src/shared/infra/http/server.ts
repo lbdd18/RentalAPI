@@ -9,9 +9,10 @@ import swaggerUI from 'swagger-ui-express';
 import { router } from '@shared/infra/http/routes';
 import swaggerFile from '../../../swagger.json';
 
-import '../typeorm';
 import { AppError } from "@shared/errors/AppError";
+import createConnection from "@shared/infra/typeorm"
 
+createConnection();
 const app = express();
 
 app.use(express.json());

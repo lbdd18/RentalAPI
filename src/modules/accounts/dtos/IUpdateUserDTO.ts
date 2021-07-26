@@ -4,7 +4,7 @@ interface IUpdateUserDTO {
   email: string;
   password: string;
   driver_license: string;
-  isAdmin: boolean;
+  is_admin: boolean;
   avatar: string;
 }
 

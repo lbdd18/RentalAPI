@@ -10,7 +10,7 @@ interface IRequest {
   email: string;
   password: string;
   driver_license: string;
-  isAdmin: boolean;
+  is_admin: boolean;
 }
 
 @injectable()
@@ -19,7 +19,7 @@ class CreateUserUseCase {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository) { }
 
-  async execute({ name, email, driver_license, password, isAdmin }: IRequest): Promise<User> {
+  async execute({ name, email, driver_license, password, is_admin }: IRequest): Promise<User> {
 
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
@@ -28,7 +28,7 @@ class CreateUserUseCase {
     }
 
     const passwordHash = await hash(password, 8);
-    const user = await this.usersRepository.create({ name, email, driver_license, password: passwordHash, isAdmin });
+    const user = await this.usersRepository.create({ name, email, driver_license, password: passwordHash, is_admin });
     return user;
   }
 }
