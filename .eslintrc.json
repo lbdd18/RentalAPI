@@ -6,7 +6,8 @@
     },
     "extends": [
         "airbnb-base",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -15,11 +16,23 @@
     },
     "plugins": [
         "@typescript-eslint",
+        "prettier",
         "eslint-plugin-import-helpers"
     ],
     "rules": {
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "never",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "never",
+                "functions": "never"
+            }
+        ],
         "camelcase": "off",
-        "allowAllPropertiesOnSameLine": false,
+        "prettier/prettier": "error",
+        "allowAllPropertiesOnSameLine": 0,
         "import/no-unresolved": "error",
         "@typescript-eslint/naming-convention": [
             "error",

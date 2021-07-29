@@ -1,9 +1,8 @@
-
-import { injectable, inject } from 'tsyringe'
-import { AppError } from '@shared/errors/AppError';
+import { injectable, inject } from 'tsyringe';
 
 import { Category } from '@modules/cars/infra/typeorm/entities/Category';
 import { ICategoriesRepository } from '@modules/cars/repositories/ICategoriesRepository';
+import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
@@ -13,17 +12,23 @@ interface IRequest {
 @injectable()
 class CreateCategoryUseCase {
   constructor(
-    @inject("CategoriesRepository")
-    private categoriesRepository: ICategoriesRepository) { }
+    @inject('CategoriesRepository')
+    private categoriesRepository: ICategoriesRepository
+  ) {}
 
   async execute({ name, description }: IRequest): Promise<Category> {
-    const categoryAlreadyExists = await this.categoriesRepository.findByName(name);
+    const categoryAlreadyExists = await this.categoriesRepository.findByName(
+      name
+    );
 
     if (categoryAlreadyExists) {
       throw new AppError('Category already exists!');
     }
 
-    const category = await this.categoriesRepository.create({ name, description });
+    const category = await this.categoriesRepository.create({
+      name,
+      description,
+    });
 
     return category;
   }

@@ -11,4 +11,4 @@ interface IUsersRepository {
   updateAvatar(id: string, avatar: string): Promise<User>;
 }
 
-export { IUsersRepository }
+export { IUsersRepository };

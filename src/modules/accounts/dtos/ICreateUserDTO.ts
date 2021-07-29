@@ -6,4 +6,4 @@ interface ICreateUserDTO {
   is_admin: boolean;
 }
 
-export { ICreateUserDTO }
+export { ICreateUserDTO };

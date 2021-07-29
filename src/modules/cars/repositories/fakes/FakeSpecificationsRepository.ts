@@ -17,7 +17,14 @@ class FakeSpecificationsRepository implements ISpecificationsRepository {
     return this.specifications.find((s) => s.name === name);
   }
 
-  async create({ name, description }: ICreateSpeficationDTO): Promise<Specification> {
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    return this.specifications.filter((s) => ids.includes(s.id));
+  }
+
+  async create({
+    name,
+    description,
+  }: ICreateSpeficationDTO): Promise<Specification> {
     const specification = new Specification();
 
     Object.assign(specification, { name, description, created_at: new Date() });

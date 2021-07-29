@@ -1,12 +1,11 @@
 import { Router } from 'express';
 
-import { usersRoutes } from './users.routes';
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { authenticateRoutes } from './authenticate.routes';
+import { carsRoutes } from './cars.routes';
 import { categoriesRoutes } from './categories.routes';
 import { specificationsRoutes } from './speficications.routes';
-import { carsRoutes } from './cars.routes';
-
-import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
+import { usersRoutes } from './users.routes';
 
 const router = Router();
 

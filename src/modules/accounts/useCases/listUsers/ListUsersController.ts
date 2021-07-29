@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe"
-import { ListUsersUseCase } from "./ListUsersUseCase";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+import { ListUsersUseCase } from './ListUsersUseCase';
 
 class ListUsersController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -10,4 +11,4 @@ class ListUsersController {
   }
 }
 
-export { ListUsersController }
+export { ListUsersController };

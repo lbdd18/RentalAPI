@@ -8,4 +8,4 @@ interface IUpdateUserDTO {
   avatar: string;
 }
 
-export { IUpdateUserDTO }
+export { IUpdateUserDTO };
