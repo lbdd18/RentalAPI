@@ -96,6 +96,12 @@ class FakeCarsRepository implements ICarsRepository {
 
     return car;
   }
+
+  async updateAvailable(id: string, available: boolean): Promise<Car> {
+    const car = this.cars.find((c) => c.id === id);
+    car.available = available;
+    return car;
+  }
 }
 
 export { FakeCarsRepository };

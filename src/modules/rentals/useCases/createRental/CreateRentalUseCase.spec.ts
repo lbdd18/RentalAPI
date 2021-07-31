@@ -1,3 +1,4 @@
+import { FakeCarsRepository } from '@modules/cars/repositories/fakes/FakeCarsRepository';
 import { FakeRentalsRepository } from '@modules/rentals/repositories/Fakes/FakeRentalsRepository';
 import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
@@ -5,16 +6,19 @@ import { AppError } from '@shared/errors/AppError';
 import { CreateRentalUseCase } from './CreateRentalUseCase';
 
 let rentalsRepository: FakeRentalsRepository;
+let carsRepository: FakeCarsRepository;
 let dateProvider: DayjsDateProvider;
 let createRentalUseCase: CreateRentalUseCase;
 
 describe('Create Rental', () => {
   beforeEach(() => {
     rentalsRepository = new FakeRentalsRepository();
+    carsRepository = new FakeCarsRepository();
     dateProvider = new DayjsDateProvider();
     createRentalUseCase = new CreateRentalUseCase(
       rentalsRepository,
-      dateProvider
+      dateProvider,
+      carsRepository
     );
   });
 
