@@ -10,6 +10,10 @@ class FakeUsersTokensRepository implements IUsersTokensRepository {
     this.userTokens = [];
   }
 
+  async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
+    return this.userTokens.find((rt) => rt.refresh_token === refresh_token);
+  }
+
   async findByUserIdAndRefreshToken(
     user_id: string,
     refresh_token: string

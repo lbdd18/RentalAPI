@@ -17,10 +17,6 @@ class DayjsDateProvider implements IDateProvider {
     return dayjs().toDate();
   }
 
-  dateAdd24Hours(): Date {
-    return dayjs().add(1, 'day').toDate();
-  }
-
   convertToUTC(date: Date): string {
     return dayjs(date).utc().local().format();
   }
@@ -34,6 +30,16 @@ class DayjsDateProvider implements IDateProvider {
 
   dateAddDays(days: number): Date {
     return dayjs().add(days, 'day').toDate();
+  }
+
+  dateAddHours(hours: number): Date {
+    return dayjs().add(hours, 'hour').toDate();
+  }
+
+  compareIfBefore(startDate: Date, endDate: Date): boolean {
+    const endDateUTC = this.convertToUTC(endDate);
+    const startDateUTC = this.convertToUTC(startDate);
+    return dayjs(startDateUTC).isBefore(endDateUTC);
   }
 }
 

@@ -4,7 +4,8 @@ interface IDateProvider {
   convertToUTC(date: Date): string;
   dateNow(): Date;
   dateAddDays(days: number): Date;
-  dateAdd24Hours(): Date;
+  dateAddHours(hours: number): Date;
+  compareIfBefore(startDate: Date, endDate: Date): boolean;
 }
 
 export { IDateProvider };
