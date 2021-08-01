@@ -4,6 +4,7 @@ import nodemailer, { Transporter } from 'nodemailer';
 import { injectable } from 'tsyringe';
 
 import { IEmailProvider } from '../IEmailProvider';
+import { IEmailProviderSendEmailDTO } from '../IEmailProviderSendEmailDTO';
 
 @injectable()
 class EtherealEmailProvider implements IEmailProvider {
@@ -27,12 +28,12 @@ class EtherealEmailProvider implements IEmailProvider {
       .catch((err) => console.log(err));
   }
 
-  async sendEmail(
-    to: string,
-    subject: string,
-    variables: any,
-    path: string
-  ): Promise<void> {
+  async sendEmail({
+    to,
+    subject,
+    variables,
+    path,
+  }: IEmailProviderSendEmailDTO): Promise<void> {
     const templateFileContent = fs.readFileSync(path).toString('utf-8');
 
     const templateParse = handlebars.compile(templateFileContent);

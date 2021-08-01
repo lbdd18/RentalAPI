@@ -21,7 +21,7 @@ class SendForgotPasswordMailUseCase {
     private usersTokensRepository: IUsersTokensRepository,
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
-    @inject('EtherealEmailProvider')
+    @inject('EmailProvider')
     private emailProvider: IEmailProvider
   ) {}
 
@@ -54,12 +54,12 @@ class SendForgotPasswordMailUseCase {
       link: `${process.env.FORGOT_EMAIL_URL}${token}`,
     };
 
-    await this.emailProvider.sendEmail(
-      email,
-      'Recover password',
+    await this.emailProvider.sendEmail({
+      to: email,
+      subject: 'Recover password',
       variables,
-      templatePath
-    );
+      path: templatePath,
+    });
   }
 }
 
