@@ -23,7 +23,7 @@ describe('Create Rental', () => {
   });
 
   it('should be able to create a new rental', async () => {
-    const dayAdd24Hours = dateProvider.dateAdd24Hours();
+    const dayAdd24Hours = dateProvider.dateAddHours(24);
     const rental = await createRentalUseCase.execute({
       car_id: 'carID',
       user_id: 'userID',
@@ -36,7 +36,7 @@ describe('Create Rental', () => {
 
   it('should not be able to create a new rental with a existant rental with same car', async () => {
     expect(async () => {
-      const dayAdd24Hours = dateProvider.dateAdd24Hours();
+      const dayAdd24Hours = dateProvider.dateAddHours(24);
       await createRentalUseCase.execute({
         car_id: 'carID',
         user_id: 'userID1',
@@ -52,7 +52,7 @@ describe('Create Rental', () => {
 
   it('should not be able to create a new rental with a existant rental with same user', async () => {
     expect(async () => {
-      const dayAdd24Hours = dateProvider.dateAdd24Hours();
+      const dayAdd24Hours = dateProvider.dateAddHours(24);
       await createRentalUseCase.execute({
         car_id: 'carID1',
         user_id: 'userID',

@@ -1,4 +1,6 @@
 import { FakeUsersRepository } from '@modules/accounts/repositories/fakes/FakeUsersRepository';
+import { FakeUsersTokensRepository } from '@modules/accounts/repositories/fakes/FakeUsersTokensRepository';
+import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
@@ -7,11 +9,19 @@ import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let createUserUseCase: CreateUserUseCase;
 let usersRepository: FakeUsersRepository;
+let usersTokensRepository: FakeUsersTokensRepository;
+let dateProvider: DayjsDateProvider;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepository = new FakeUsersRepository();
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
+    usersTokensRepository = new FakeUsersTokensRepository();
+    dateProvider = new DayjsDateProvider();
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      usersRepository,
+      usersTokensRepository,
+      dateProvider
+    );
     createUserUseCase = new CreateUserUseCase(usersRepository);
   });
 
