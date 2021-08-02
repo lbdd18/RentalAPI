@@ -105,3 +105,6 @@ dist
 
 # tmp files
 tmp/
+
+# ORM config file
+ormconfig.json
